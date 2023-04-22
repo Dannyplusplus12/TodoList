@@ -1,0 +1,32 @@
+/* Desktop */
+@media (max-width: 1920px) {
+    
+}
+
+/* Laptop */
+@media (max-width: 1280px) {
+    
+}
+
+/* Tablet */
+@media (max-width: 980px) {
+    #main {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        justify-content: flex-end;
+    }
+    
+    #todos {
+        padding: 0;
+    }
+
+    #add-side {
+        padding: 0;
+    }
+}
+
+/* Mobile */
+@media (max-width: 375px) {
+    
+}

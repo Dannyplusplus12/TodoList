@@ -1,0 +1,266 @@
+/* ======== RESET ======== */
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    font-family: 'Roboto', sans-serif;;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+}
+
+input {
+    outline: none;
+    border:none;
+    background-image:none;
+    background-color:transparent;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;  
+}
+
+textarea {
+    border: none;
+    overflow: auto;
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    resize: none;
+}
+/* ======== ROOT ======== */
+
+:root {
+    --main-color: #05C1F5;
+    --disabled-color: #b6b6b6;
+    --task-text-color: #4d4d4d;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
+
+/* ======== MAIN ======== */
+
+#main {
+    position: relative;
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+/* ======== ADD SIDE ======== */
+#add_side {
+    justify-content: space-around;
+}
+
+/* ======== TASK ======== */
+#todos {
+    padding-top: 16px;
+    padding-left: 20px;
+}
+
+.task {
+    padding: 16px;
+    margin-bottom: 16px;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+}
+
+.task-title {
+    color: var(--task-text-color);
+    font-size: 22px;
+}
+
+.task-des {
+    color: var(--task-text-color);
+    font-size: 14px;
+}
+
+.task-datetime {
+    color: var(--task-text-color);
+    font-size: 16px;
+}
+
+.task-btns {
+    justify-content: space-around;
+    font-size: 20px;
+}
+
+.task-btns i:hover {
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+/* callender  unvisible:
+data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" viewBox="0 0 24 24"><path fill="%23bbbbbb" d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"/></svg>
+*/
+input::-webkit-calendar-picker-indicator {
+    font-size: 18px;
+}
+
+input::-webkit-calendar-picker-indicator:hover {
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+.task.completed {
+    opacity: 0.6;
+}
+
+.task.completed .task-des,
+.task.completed .task-title {
+    text-decoration: line-through;
+}
+
+.task.task.completed input::-webkit-calendar-picker-indicator:hover {
+    cursor: default;
+    opacity: 1;
+}
+
+#add-side {
+    padding-top: 60px;
+    padding-right: 20px;
+}
+
+.add-box {
+    padding: 32px;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+}
+
+#add-title {
+    color: var(--task-text-color);
+    font-size: 22px;
+}
+
+.add-box textarea {
+    color: var(--task-text-color);
+    font-size: 14px;
+}
+
+.add-box input[type="datetime-local"] {
+    color: var(--task-text-color);
+    font-size: 16px;
+}
+
+#add-btn {
+    color: var(--task-text-color);
+    background-color: #fff;
+    border: #b6b6b6 solid 1px;
+    border-radius: 3px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    margin-top: 8px;
+}
+
+#add-btn:hover {
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+.choose_filter-area {
+    margin-top: 16px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#all_filter-btn,
+#progress_filter-btn,
+#completed_filter-btn {
+    font-size: 18px;
+    color: var(--task-text-color);
+    background-color: #fff;
+    border: #fff solid 1px;
+    border-radius: 3px;
+    padding: 8px 21px 8px 21px;
+}
+
+#all_filter-btn:hover,
+#progress_filter-btn:hover,
+#completed_filter-btn:hover {
+    cursor: pointer;
+    border-color: #e6e6e6;
+}
+
+#all_filter-btn.choosed,
+#progress_filter-btn.choosed,
+#completed_filter-btn.choosed {
+    border-color: #e6e6e6;
+}
+
+.alert-task {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    color: var(--task-text-color);
+    background-color: rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.alert-task div {
+    background-color: #fff;
+    width: 500px;
+    border-radius: 3px;
+}
+
+.alert-task .header {
+    font-size: 18px;
+    text-align: center;
+    border-radius: 3px 3px 0 0;
+    border-bottom: #b6b6b6 solid 1px;
+    padding: 8px 0px;
+}
+
+.alert-task .body {
+    padding: 16px;
+    display: flex;
+    text-align: none;
+    flex-direction: column;
+    word-wrap: break-word;
+}
+
+.alert-task h3 {
+    font-size: 24px;
+    padding-bottom: 4px;
+}
+
+.alert-task .footer {
+    cursor: pointer;
+    text-align: center;
+    font-size: 20px;
+    border-radius: 0 0 3px 3px;
+    border-top: #b6b6b6 solid 1px;
+    padding: 10px 0px
+}
+
+.alert-task input[type="datetime-local"] {
+    font-size: 18px;
+    color: var(--task-text-color);
+    padding-top: 8px;
+}
+
+#total-task {
+    color: var(--task-text-color);
+    padding-top: 16px;
+    position: relative;
+    margin-left: auto;
+    font-style: italic;
+    font-size: 16px;
+}

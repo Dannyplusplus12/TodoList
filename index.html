@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link rel="stylesheet" href="icons/themify-icons/themify-icons.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="main">
+        <div id="todos"></div>
+        <div id="add-side" class="flex-col">
+            <div class="add-box flex-col">
+                <input type="text" placeholder="Nội dung công việc" id="add-title">
+                <textarea name="" id="add-des" cols="46" rows="2" placeholder="Mô tả công việc" maxlength=""></textarea>
+                <input type="datetime-local" name="" id="add-date">  
+                <button id="add-btn"><i class="ti-plus"></i></button>
+            </div>
+            <div class="choose_filter-area">
+                <button id="all_filter-btn">Tất cả</button>
+                <button id="progress_filter-btn">Đang thực hiện</button>
+                <button id="completed_filter-btn">Đã hoàn thành</button>
+            </div>
+            <input id="total-task" value="Tổng số công việc: " readonly></input>
+        </div>
+        
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <script src="main.js"></script>
+    <script src="responsive.js"></script>
+</body>
+</html>
