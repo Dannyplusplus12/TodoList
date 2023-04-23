@@ -96,10 +96,10 @@ function LoadTodo() {
     if(CurrentPage === 'all') {
         for (const element of TasksList) {
             if(element[0] === 'completed') {
-                res = res + `<li class='task ${element[0]} flex-col'><div class='flex-row'><div class='flex-col'><input type='text' value='${element[1]}' class='task-title' readonly><textarea cols="46" rows="2" class='task-des' readonly>${element[2]}</textarea></div><div class="flex-col task-btns"><i class="ti-check-box"></i><i class="ti-trash"></i></div></div><input type="datetime-local" class='task-datetime' value="${element[3]}" readonly></li>`;
+                res = res + `<li class='task ${element[0]} flex-row'><div class='flex-row'><div class='flex-col'><input type='text' value='${element[1]}' class='task-title' readonly><textarea cols="46" rows="3" class='task-des' readonly>${element[2]}</textarea><input type="datetime-local" class='task-datetime' onfocus="this.showPicker()" value="${element[3]}"readonly></div></div><div class="flex-col task-btns"><label class="task-check-box"><input type="checkbox"><span class="checkmark"></span></label><label class="task-del-btn"><i class="ti-trash"></i></label></div></li>`;
             }
             else {
-                res = res + `<li class='task ${element[0]} flex-col'><div class='flex-row'><div class='flex-col'><input type='text' value='${element[1]}' class='task-title'><textarea cols="46" rows="2" class='task-des'>${element[2]}</textarea></div><div class="flex-col task-btns"><i class="ti-check-box"></i><i class="ti-trash"></i></div></div><input type="datetime-local" class='task-datetime' value="${element[3]}"></li>`;
+                res = res + `<li class='task ${element[0]} flex-row'><div class='flex-row'><div class='flex-col'><input type='text' value='${element[1]}' class='task-title'><textarea cols="46" rows="3" class='task-des'>${element[2]}</textarea><input type="datetime-local" class='task-datetime' onfocus="this.showPicker()" value="${element[3]}"></div></div><div class="flex-col task-btns"><label class="task-check-box"><input type="checkbox"><span class="checkmark"></span></label><label class="task-del-btn"><i class="ti-trash"></i></label></div></li>`;
             }
         }
         document.getElementById('total-task').value += TasksList.length
@@ -107,10 +107,10 @@ function LoadTodo() {
     else {
         for(const element of TasksList.filter((element) => {return element[0] === CurrentPage})) {
             if(element[0] === 'completed') {
-                res = res + `<li class='task ${element[0]} flex-col'><div class='flex-row'><div class='flex-col'><input type='text' value='${element[1]}' class='task-title' readonly><textarea cols="46" rows="2" class='task-des' readonly>${element[2]}</textarea></div><div class="flex-col task-btns"><i class="ti-check-box"></i><i class="ti-trash"></i></div></div><input type="datetime-local" class='task-datetime' value="${element[3]}" readonly></li>`;
+                res = res + `<li class='task ${element[0]} flex-row'><div class='flex-row'><div class='flex-col'><input type='text' value='${element[1]}' class='task-title' readonly><textarea cols="46" rows="3" class='task-des' readonly>${element[2]}</textarea><input type="datetime-local" class='task-datetime' onfocus="this.showPicker()" value="${element[3]}"readonly></div></div><div class="flex-col task-btns"><label class="task-check-box"><input type="checkbox"><span class="checkmark"></span></label><label class="task-del-btn"><i class="ti-trash"></i></label></div></li>`;
             }
             else {
-                res = res + `<li class='task ${element[0]} flex-col'><div class='flex-row'><div class='flex-col'><input type='text' value='${element[1]}' class='task-title'><textarea cols="46" rows="2" class='task-des'>${element[2]}</textarea></div><div class="flex-col task-btns"><i class="ti-check-box"></i><i class="ti-trash"></i></div></div><input type="datetime-local" class='task-datetime' value="${element[3]}"></li>`;
+                res = res + `<li class='task ${element[0]} flex-row'><div class='flex-row'><div class='flex-col'><input type='text' value='${element[1]}' class='task-title'><textarea cols="46" rows="3" class='task-des'>${element[2]}</textarea><input type="datetime-local" class='task-datetime' onfocus="this.showPicker()" value="${element[3]}"></div></div><div class="flex-col task-btns"><label class="task-check-box"><input type="checkbox"><span class="checkmark"></span></label><label class="task-del-btn"><i class="ti-trash"></i></label></div></li>`;
             }
         }
         document.getElementById('total-task').value += TasksList.filter((element) => {return element[0] === CurrentPage}).length
@@ -118,20 +118,22 @@ function LoadTodo() {
     return res
 }
 
-{/* <li class='${element[0]} flex-col'>
+{/* <li class='task ${element[0]} flex-row'>
     <div class='flex-row'>
         <div class='flex-col'>
             <input type='text' value='${element[1]}' class='task-title'>
-            <textarea cols="30" rows="2" class='task-des'>${element[2]}</textarea>
-        </div>
-        <div class="flex-row">
-            <i class="ti-check-box"></i>
-            <i class="ti-trash"></i>
+            <textarea cols="46" rows="3" class='task-des'>${element[2]}</textarea>
+            <input type="datetime-local" class='task-datetime' onfocus="this.showPicker()" value="${element[3]}">
         </div>
     </div>
-    <input type="datetime-local" class='task-datetime' value="${element[3]}">
+    <div class="flex-col task-btns">
+        <label class="task-check-box">
+            <input type="checkbox">
+            <span class="checkmark"></span>
+        </label>
+        <i class="ti-trash task-del-btn"></i>
+    </div>
 </li> */}
-
 
 // localStorage.setItem("Tasks", JSON.stringify([["progress","Buy Danny a coffee", "Buy Danny a coofee in the CaFein", "10/04/2023"], ["progress","Buy Danny an OreO", "Buy Danny an OreO In Go", "10/05/2023"], ["completed","Breakup", "Breakup with .... ", "12/04/2023"]]))
 
@@ -145,19 +147,17 @@ function LoadTodos() {
 //==================== GET EVENT ==================== //
 
 //Erase an Li when click TrashButton
-document.querySelectorAll('.ti-trash').forEach(title =>
+document.querySelectorAll('.task-del-btn').forEach(title =>
     title.addEventListener('click', () => {
-        var index = getElementIndex(title.parentElement.parentElement.parentElement)
+        var index = getElementIndex(title.parentElement.parentElement.parentElement);
         TasksList.splice(index, 1);
         SaveAndReset();
     })
 )
 
-document.querySelectorAll('.ti-check-box').forEach(item =>
+document.querySelectorAll('.task-check-box .checkmark').forEach(item =>
     item.addEventListener('click', () => {
         var index = getElementIndex(item.parentElement.parentElement.parentElement);
-        // TasksList.splice(index, 1);
-        // RootUpdate();
         if(TasksList[index][0] === 'completed') {
             TasksList[index][0] = 'progress';
         }

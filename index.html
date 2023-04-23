@@ -7,17 +7,17 @@
 
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="responsive.css">
-    <link rel="stylesheet" href="icons/themify-icons/themify-icons.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="icons/themify-icons.css">
+    <title>LodoList</title>
 </head>
 <body>
     <div id="main">
         <div id="todos"></div>
         <div id="add-side" class="flex-col">
             <div class="add-box flex-col">
-                <input type="text" placeholder="Nội dung công việc" id="add-title">
-                <textarea name="" id="add-des" cols="46" rows="2" placeholder="Mô tả công việc" maxlength=""></textarea>
-                <input type="datetime-local" name="" id="add-date">  
+                <input type="text" placeholder="Nhập nội dung công việc:" id="add-title">
+                <textarea id="add-des" cols="46" rows="4" placeholder="Nhập mô tả công việc:" maxlength=""></textarea>
+                <input type="datetime-local" id="add-date" onfocus="this.showPicker()">  
                 <button id="add-btn"><i class="ti-plus"></i></button>
             </div>
             <div class="choose_filter-area">
