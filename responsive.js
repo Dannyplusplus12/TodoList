@@ -1,13 +1,13 @@
-const PhoneQuery = window.matchMedia('(max-width: 375px)')
+// const PhoneQuery = window.matchMedia('(max-width: 375px)')
 
-function handleMobileChange(e) {
-    if (e.matches) {
-        document.querySelectorAll('textarea').forEach(object => {
-            object.cols = "30"
-        })
-    }
-}
+// function handleMobileChange(e) {
+//     if (e.matches) {
+//         document.querySelectorAll('textarea').forEach(object => {
+//             object.cols = "30"
+//         })
+//     }
+// }
 
-PhoneQuery.addListener(handleMobileChange)
+// PhoneQuery.addListener(handleMobileChange)
 
-handleMobileChange(PhoneQuery)
+// handleMobileChange(PhoneQuery)

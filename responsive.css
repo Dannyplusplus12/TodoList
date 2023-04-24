@@ -13,17 +13,51 @@
     #main {
         display: flex;
         flex-direction: column-reverse;
-        align-items: center;
         justify-content: flex-end;
     }
     
     #todos {
+        margin-right: auto;
         padding: 0;
     }
 
-    #add-side {
-        padding: 0;
+    .task {
+        flex-direction: column;
+        margin-bottom: 28px;
     }
+
+    .task-btns {
+        flex-direction: row;
+        justify-content: flex-end;
+        font-size: 25px;
+    }
+
+    .ti-trash {
+        position: relative;
+        left: 3px;
+        top: -3px;
+        color: var(--task-text-color);
+    }
+
+    #add-side {
+        padding: 4px auto;
+        margin-bottom: 22px;
+    }
+
+    .add-box {
+        /* margin-right: auto; */
+        width: auto;
+    }
+
+    .choose_filter-area {
+        /* margin-right: auto; */
+        width: auto;
+    }
+
+    .total-task-box {
+        margin-right: auto;
+    }
+
 }
 
 /* Mobile */

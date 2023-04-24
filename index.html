@@ -13,24 +13,27 @@
 <body>
     <div id="main">
         <div id="todos"></div>
-        <div id="add-side" class="flex-col">
-            <div class="add-box flex-col">
-                <input type="text" placeholder="Nhập nội dung công việc:" id="add-title">
-                <textarea id="add-des" cols="46" rows="4" placeholder="Nhập mô tả công việc:" maxlength=""></textarea>
-                <input type="datetime-local" id="add-date" onfocus="this.showPicker()">  
-                <button id="add-btn"><i class="ti-plus"></i></button>
+            <div id="add-side" class="flex-col">
+                <h2>Thêm công việc:</h2>
+                <div class="add-box flex-col">
+                    <input type="text" placeholder="Nhập nội dung công việc:" id="add-title">
+                    <textarea id="add-des" cols="46" rows="4" placeholder="Nhập mô tả công việc:" maxlength=""></textarea>
+                    <p onclick="document.getElementById('add-date').showPicker()">Chọn thời hạn công việc:</p>
+                    <input type="datetime-local" id="add-date" onfocus="this.showPicker()">  
+                    <button id="add-btn"><i class="ti-plus"></i></button>
+                </div>
+                <div class="choose_filter-area">
+                    <button id="all_filter-btn">Tất cả</button>
+                    <button id="progress_filter-btn">Đang thực hiện</button>
+                    <button id="completed_filter-btn">Đã hoàn thành</button>
+                </div>
+                <div id="total-task-box">
+                    <p id="total-task-title">Tổng số công việc: </p>
+                    <input id="total-task" readonly>
+                </div>
             </div>
-            <div class="choose_filter-area">
-                <button id="all_filter-btn">Tất cả</button>
-                <button id="progress_filter-btn">Đang thực hiện</button>
-                <button id="completed_filter-btn">Đã hoàn thành</button>
-            </div>
-            <input id="total-task" value="Tổng số công việc: " readonly></input>
         </div>
-        
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
     <script src="main.js"></script>
     <script src="responsive.js"></script>
 </body>

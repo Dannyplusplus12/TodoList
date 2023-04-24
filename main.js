@@ -30,21 +30,30 @@ function TaskSortComparation(l, r) {
     return DateComparation(a, b);
 }
 
+function* enumerate(iterable) {
+    let i = 0;
+
+    for (const x of iterable) {
+        yield [i, x];
+        i++;
+    }
+}
+
 //==================== ROOT ==================== //
 
 const Main = document.getElementById('main');
 
-// add datepicker to all div have Datepicker class
-$(function() {$('.datePicker').datepicker({changeMonth: true,changeYear: true})});
-
 var TasksList = GetTodos();
 TasksList = TasksList? TasksList: [];
+
+TasksList.sort(TaskSortComparation);
+
 var CurrentPage = GetCurrentPage();
 CurrentPage = CurrentPage? CurrentPage: 'all';
+
 var AlertTasks = GetAlertTasks();
 AlertTasks = AlertTasks? AlertTasks: [];
 
-TasksList.sort(TaskSortComparation);
 
 const Root = document.getElementById('todos');
 RootUpdate();
@@ -62,9 +71,16 @@ function RootUpdate() {
     SaveTodos();
     Root.innerHTML = '';
     Root.appendChild(LoadTodos());
-    AlertTasks.forEach(data => {
-        Main.appendChild(LoadAlertTasks(data));
-    })
+    // AlertTasks.forEach(data => {
+    //     Main.appendChild(LoadAlertTasks(data));
+    // })
+    for(const [index, data] of enumerate(AlertTasks)) {
+        div = LoadAlertTasks(data);
+        if(index === 0) {
+            div.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
+        }
+        Main.appendChild(div);
+    }
 }
 
 function SaveAndReset() {
@@ -147,11 +163,14 @@ function LoadTodos() {
 //==================== GET EVENT ==================== //
 
 //Erase an Li when click TrashButton
-document.querySelectorAll('.task-del-btn').forEach(title =>
-    title.addEventListener('click', () => {
-        var index = getElementIndex(title.parentElement.parentElement.parentElement);
-        TasksList.splice(index, 1);
-        SaveAndReset();
+document.querySelectorAll('.task-del-btn').forEach(item =>
+    item.addEventListener('click', () => {
+        var index = getElementIndex(item.parentElement.parentElement.parentElement);
+        const response = confirm("Bạn có chắc muốn xoá: " + TasksList[index][1]);
+        if(response) {
+            TasksList.splice(index, 1);
+            SaveAndReset();
+        }
     })
 )
 
@@ -245,7 +264,7 @@ function LoadAlertTasks(data) {
     <button>Đóng</button>
 </div> */}
 
-//per 30s check if any task time up, and to AlertTasks
+//per 10s check if any task time up, and to AlertTasks
 setInterval(() => {
     var currentdate = new Date();
     var date = currentdate.getFullYear() + '-' + ((currentdate.getMonth()+1 <= 9)? ('0' + (currentdate.getMonth()+1)): (currentdate.getMonth()+1)) + '-' + ((currentdate.getDate()+1 <= 9)? ('0' + (currentdate.getDate()+1)): (currentdate.getDate())) + 'T' + currentdate.getHours() + ':' + currentdate.getMinutes();
